@@ -1,25 +1,55 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+function ImageCaptioningApp() {
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+  const [caption, setCaption] = useState('');
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    setImage(selectedImage);
+
+    if (selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      setImageUrl(imageUrl);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('image', image);
+
+    try {
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      setCaption(data.prediction);
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Gerador de Legendas</h1>
+      <form onSubmit={handleSubmit} className="form">
+        {imageUrl && <img src={imageUrl} alt="Preview" className="preview-image" />}
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <button type="submit" className="btn">Gerar Legenda</button>
+      </form>
+      {caption && (
+        <div className="caption-box">
+          <strong>Legenda:</strong> {caption}
+        </div>
+      )}
     </div>
   );
 }
 
-export default App;
+export default ImageCaptioningApp;
