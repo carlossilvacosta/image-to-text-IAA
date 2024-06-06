@@ -1,3 +1,15 @@
+# :pushpin: Descrição de Imagens - Preview
+
+<img align="right" src="https://github.com/carlossilvacosta/image-to-text-front-IAA/blob/main/assets/2.png"/>
+
+...
+
+
+<img align="right" src="https://github.com/carlossilvacosta/image-to-text-front-IAA/blob/main/assets/3.png"/>
+
+...
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
