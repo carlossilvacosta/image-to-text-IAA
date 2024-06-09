@@ -5,7 +5,7 @@
 
 ## :robot: Application Front-end | Image-to-Text
 
-Simple application that must consume an API containing Artificial Intelligence that processes images and transcribes them into text.
+Front-end da aplicação que deve consumir uma API contendo uma Inteligência Artificial que faz o processamento de imagem e a transcreve em texto.
 
 ## :pushpin: Componentes do grupo:
 - ARTUR INOCÊNCIO FERREIRA DOS SANTOS
